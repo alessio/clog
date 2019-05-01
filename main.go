@@ -58,7 +58,7 @@ var (
 
 	// command to add a pending log entry
 	addCmd = &cobra.Command{
-		Use:    "add [section] [stanza] [message]",
+		Use:    "add [section] [tag] [message]",
 		Short:  "Add an entry file.",
 		Long:   `Add an entry file. If message is empty, start the editor to edit the message.`,
 		Args:   cobra.MaximumNArgs(3),
@@ -73,15 +73,15 @@ var (
 				log.Println("must include at least 2 arguments when not in interactive mode")
 				return nil
 			}
-			sectionDir, stanzaDir := args[0], args[1]
-			err := validateSectionStanzaDirs(sectionDir, stanzaDir)
+			sectionDir, tagDir := args[0], args[1]
+			err := validateSectionTagDirs(sectionDir, tagDir)
 			if err != nil {
 				return err
 			}
 			if len(args) == 3 {
-				return addSinglelineEntryFile(sectionDir, stanzaDir, strings.TrimSpace(args[2]))
+				return addSinglelineEntryFile(sectionDir, tagDir, strings.TrimSpace(args[2]))
 			}
-			return addEntryFile(sectionDir, stanzaDir)
+			return addEntryFile(sectionDir, tagDir)
 		},
 	}
 
@@ -176,23 +176,23 @@ func addEntryFileFromConsoleInput() error {
 	return addSinglelineEntryFile(sectionDir, tag, message)
 }
 
-func addSinglelineEntryFile(sectionDir, stanzaDir, message string) error {
+func addSinglelineEntryFile(sectionDir, tagDir, message string) error {
 	filename := filepath.Join(
-		filepath.Join(entriesDir, sectionDir, stanzaDir),
+		filepath.Join(entriesDir, sectionDir, tagDir),
 		generateFileName(message),
 	)
 
 	return writeEntryFile(filename, []byte(message))
 }
 
-func addEntryFile(sectionDir, stanzaDir string) error {
+func addEntryFile(sectionDir, tagDir string) error {
 	bs, err := readUserInputFromEditor()
 	if err != nil {
 		return err
 	}
 	firstLine := strings.TrimSpace(strings.Split(string(bs), "\n")[0])
 	filename := filepath.Join(
-		filepath.Join(entriesDir, sectionDir, stanzaDir),
+		filepath.Join(entriesDir, sectionDir, tagDir),
 		generateFileName(firstLine),
 	)
 
@@ -340,7 +340,7 @@ func writeEntryFile(filename string, bs []byte) error {
 	return nil
 }
 
-func validateSectionStanzaDirs(sectionDir, tag string) error {
+func validateSectionTagDirs(sectionDir, tag string) error {
 	if _, ok := config.Sections[sectionDir]; !ok {
 		return fmt.Errorf("invalid section -- %s", sectionDir)
 	}
@@ -349,7 +349,7 @@ func validateSectionStanzaDirs(sectionDir, tag string) error {
 			return nil
 		}
 	}
-	return fmt.Errorf("invalid stanza -- %s", tag)
+	return fmt.Errorf("invalid tag -- %s", tag)
 }
 
 // nolint: errcheck
