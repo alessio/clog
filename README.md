@@ -1,28 +1,33 @@
 # clog
 Maintain changelog files in modular fashion 
 
+# Installation
+
+```
+$ go get -u github.com/alessio/clog
+```
+
 # Usage
 
 ```
-$  clog      
-  Maintain unreleased changelog entries in a modular fashion.
-  
-  Usage:
-    clog [command]
-  
-  Available Commands:
-    add         Add an entry file.
-    generate    Generate a changelog in Markdown format and print it to STDOUT. version defaults to UNRELEASED.
-    help        Help about any command
-    prune       Delete empty sub-directories recursively.
-  
-  Flags:
-    -d, --entries-dir string   entry files directory (default "/Users/yangyanqing/go/src/github.com/cosmos/cosmos-sdk/.pending")
-    -h, --help                 help for clog
-    -v, --verbose-logging      enable verbose logging
-  
-  Use "clog [command] --help" for more information about a command.
+$ clog help
+Maintain unreleased changelog entries in a modular fashion.
 
+Usage:
+  clog [command]
+
+Available Commands:
+  add         Add an entry file.
+  generate    Generate a changelog in Markdown format and print it to STDOUT.
+  help        Help about any command
+  prune       Delete empty sub-directories recursively.
+
+Flags:
+  -d, --entries-dir string   entry files directory (default "$CWD/.pending")
+  -h, --help                 help for clog
+  -v, --verbose-logging      enable verbose logging
+
+Use "clog [command] --help" for more information about a command.
 ```
 
 ## Add a new entry
