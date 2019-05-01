@@ -1,4 +1,4 @@
-[![Travis-CI Status](https://api.travis-ci.org/alessio/clog.png?branch=master)](http://travis-ci.org/#!/alessio/clog)
+[![Build Status](https://travis-ci.com/alessio/clog.svg?branch=master)](https://travis-ci.com/alessio/clog)
 
 # clog
 
