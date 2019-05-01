@@ -1,5 +1,15 @@
 package main
 
+// This software is
+//
+//  Copyright (C) 2019 Alessio Treglia <alessio@tendermint.com>
+//  Copyright (C) 2019 Rigel Rozanski <rigel@tendermint.com>
+//
+// and distributed under the terms of the Apache License, Version 2.0.
+//
+// You should have received a copy of the license along with this package;
+// if not, you may find it at 'https://www.apache.org/licenses/LICENSE-2.0`
+
 import (
 	"bufio"
 	"errors"
@@ -417,8 +427,6 @@ func mustPruneDirIfEmpty(path string) error {
 	log.Println(path, "removed")
 	return nil
 }
-
-// DONTCOVER
 
 func checkGetcwd() string {
 	cwd, err := os.Getwd()
