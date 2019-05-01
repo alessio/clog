@@ -1,4 +1,7 @@
+[![Travis-CI Status](https://api.travis-ci.org/alessio/clog.png?branch=master)](http://travis-ci.org/#!/alessio/clog)
+
 # clog
+
 Maintain changelog files in modular fashion 
 
 # Installation
